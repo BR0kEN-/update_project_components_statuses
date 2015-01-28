@@ -1,0 +1,15 @@
+{
+    "name": "propeople/features_revert_project",
+    "type": "library",
+    "license": "GPL-2.0+",
+    "keywords": ["drush", "commands", "drupal", "features"],
+    "homepage": "http://wearepropeople.com",
+    "description": "Enable/revert the features from the profile \"*.info\" file or file, that stored in \"sites/default/components.info\".",
+    "authors": [{
+        "name": "Sergey Bondarenko",
+        "email": "broken@propeople.com.ua"
+    }],
+    "require": {
+        "drush/drush": ">=6.2.0"
+    }
+}

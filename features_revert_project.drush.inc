@@ -18,12 +18,12 @@ function features_revert_project_drush_command() {
   $commands = array();
 
   $commands['features-revert-project'] = array(
-    'description' => dt('Revert the project features that collected in special file.'),
+    'description' => dt('Revert/enable the project features/modules that collected in special file.'),
     'drupal dependencies' => array('features'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'aliases' => array('frp'),
     'examples' => array(
-      'drush frp' => dt('Enable/revert the features from the profile "*.info" file or file, that stored in "sites/default/components.info".'),
+      'drush frp' => dt('Enable/revert the features from the profile "*.info" file or file, that stored in "sites/default" and named "components.info".'),
     ),
   );
 

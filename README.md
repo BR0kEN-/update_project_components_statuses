@@ -1,7 +1,7 @@
-# Features Revert Project (Drush command)
+# Update the Project Components statuses (Drush command)
 
 Did you have a situation when your Drupal project contains a lot of features
-that need to be reverted after the regular code deployment? The `drush frp`
+that need to be reverted after the regular code deployment? The `drush upcs`
 command is enabled/reverted the necessary modules/features.
 
 To let the command know what should be checked, a special file in "sites/default"
@@ -22,13 +22,13 @@ components[] = module_name
 
 Enable or revert all modules or features if it necessary.
 ```
-drush frp
+drush upcs
 ```
 
 ## Installation
 
-You can just execute the `drush dl features_revert_projects` and Drush download
-the package into your `~/.drush` folder.
+You can just execute the `drush dl update_project_components_statuses` and Drush
+download the package into your `~/.drush` folder.
 
 Another way to install this command - is manually download the sources and
 place it into `~/.drush` folder by yourself.

@@ -1,5 +1,5 @@
 {
-    "name": "propeople/features_revert_project",
+    "name": "propeople/update_project_components_statuses",
     "type": "library",
     "license": "GPL-2.0+",
     "keywords": ["drush", "commands", "drupal", "features"],

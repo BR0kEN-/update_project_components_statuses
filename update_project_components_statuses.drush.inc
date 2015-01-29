@@ -70,12 +70,10 @@ function drush_update_project_components_statuses() {
           $components['revert'][] = $component;
         }
 
-        // If features was not enabled, then we propose to do that.
         if (!isset($enabled_modules[$component]) && isset($all_modules[$component])) {
-          $dependencies = drush_check_module_dependencies(array($component), $all_modules);
+          $info = drush_check_module_dependencies(array($component), $all_modules);
 
-          // If extensions was not enabled, then propose to do that.
-          foreach ($dependencies[0]['dependencies'] as $dependency) {
+          foreach ($info[0]['dependencies'] as $dependency) {
             if (!isset($enabled_modules[$dependency])) {
               $components['enable'][] = $dependency;
             }
@@ -91,8 +89,10 @@ function drush_update_project_components_statuses() {
     }
   }
 
-  foreach ($components as $group => $extensions) {
-    $components["$group-string"] = array("!$group" => implode(', ', $extensions));
+  if ($components) {
+    foreach ($components as $group => $extensions) {
+      $components['strings'][$group] = array("!$group" => implode(', ', $extensions));
+    }
   }
 
   // Enable disabled components.
@@ -109,15 +109,13 @@ function drush_update_project_components_statuses() {
     drush_log(dt('Nothing to revert.'), 'ok');
   }
   else {
-    if (drush_confirm(dt('Would you like to revert the next features: !revert', $components['revert-string']))) {
+    if (drush_confirm(dt('Would you like to revert the next features: !revert', $components['strings']['revert']))) {
       call_user_func_array('drush_features_revert', $components['revert']);
     }
   }
 
   // Inform about missing components.
   if (!empty($components['missing'])) {
-    drush_log(dt('The following extensions are missing in your installation and could not be enabled: !missing', $components['missing-string']), 'warning');
+    drush_log(dt('The following extensions are missing in your installation and could not be enabled: !missing', $components['strings']['missing']), 'warning');
   }
-
-  return NULL;
 }
